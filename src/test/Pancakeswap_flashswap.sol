@@ -16,7 +16,7 @@ contract ContractTest is Test {
   function testPancakeswap_flashswap() public {
     bytes memory data = abi.encode(
       0x0eD7e52944161450477ee417DE9Cd3a859b14fD0,
-      1000 * 1e18
+      2000 * 1e18
     );
     wbnb.deposit{ value: 20 * 1e18 }();
     emit log_named_uint(
@@ -24,7 +24,7 @@ contract ContractTest is Test {
       wbnb.balanceOf(address(this))
     );
     //Borrow 1,000 BNB
-    PancakePair.swap(0, 1000 * 1e18, address(this), data);
+    PancakePair.swap(0, 2000 * 1e18, address(this), data);
   }
 
   function pancakeCall(
@@ -37,7 +37,7 @@ contract ContractTest is Test {
       "After flashswap, WBNB balance of user:",
       wbnb.balanceOf(address(this))
     );
-    wbnb.transfer(0x0eD7e52944161450477ee417DE9Cd3a859b14fD0, 1020 * 1e18);
+    wbnb.transfer(0x0eD7e52944161450477ee417DE9Cd3a859b14fD0, 2006 * 1e18);
     emit log_named_uint(
       "After repay, WBNB balance of user:",
       wbnb.balanceOf(address(this))

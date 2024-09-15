@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.10;
 
-interface Uni_Pair_V2 {
+interface IUni_Pair_V2 {
   event Approval(address indexed owner, address indexed spender, uint256 value);
   event Burn(
     address indexed sender,

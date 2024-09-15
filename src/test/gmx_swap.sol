@@ -30,15 +30,15 @@ contract ContractTest is Test {
   function setUp() public {
     vm.createSelectFork("arbitrum", 22552152); //fork arbitrum at block 22552152
 	
-	vm.label(address(WBTC), "WBTC");
+	  vm.label(address(WBTC), "WBTC");
     vm.label(address(USDT), "USDT");
-	vm.label(address(DAI), "DAI");
+	  vm.label(address(DAI), "DAI");
     vm.label(address(WETH), "WETH");
     vm.label(address(router), "ROUTER");
-	vm.label(address(vault), "VAULT");
-	vm.label(address(reader), "READER");
+	  vm.label(address(vault), "VAULT");
+	  vm.label(address(reader), "READER");
 
-	USDC.approve(address(router),1000000);		
+	  USDC.approve(address(router), 211104988);		
 	
     address here = address(this);
     vm.startPrank(0x1714400FF23dB4aF24F9fd64e7039e6597f18C2b);
@@ -53,12 +53,12 @@ contract ContractTest is Test {
     console2.log("USDT balance before swap:", USDT.balanceOf(address(this)));
     console2.log("USDC balance before swap:", USDC.balanceOf(address(this)));
     console2.log("----");
-	router.swap(path,1000000,1,address(this));	
-	console2.log("USDT balance after swap:", USDT.balanceOf(address(this)));
+	  router.swap(path,1000000,1,address(this));	
+	  console2.log("USDT balance after swap:", USDT.balanceOf(address(this)));
     console2.log("USDC balance after swap:", USDC.balanceOf(address(this)));
-	console2.log("----");
+	  console2.log("----");
 
-   }  
+  }  
  
  }
   

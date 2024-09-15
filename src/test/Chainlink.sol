@@ -21,7 +21,7 @@ contract ContractTest is Test {
   AggregatorV3Interface chainlink = AggregatorV3Interface(0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419);
 
   function setUp() public {
-    vm.createSelectFork("mainnet", 15327706);
+    vm.createSelectFork("mainnet", 19866357);
   }
 
   function testgetLatestPrice() public {

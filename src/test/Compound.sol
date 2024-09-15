@@ -57,7 +57,7 @@ contract ContractTest is Test {
     emit log_named_uint("Supplied 1 btc to get C_WBTC:", C_WBTC.balanceOf(address(this)));
 
     exchangeRate = C_WBTC.exchangeRateCurrent();
-    emit log_named_uint("exchangeRate:", supplyRate);
+    emit log_named_uint("exchangeRate:", exchangeRate);
 
     supplyRate = C_WBTC.supplyRatePerBlock();
     emit log_named_uint("supplyRate:", supplyRate);

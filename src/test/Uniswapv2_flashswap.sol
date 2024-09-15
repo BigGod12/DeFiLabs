@@ -14,8 +14,8 @@ contract ContractTest is Test {
   }
 
   function testUniswapv2_flashswap() public {
-    weth.deposit{ value: 2 ether }();
-    Uni_Pair_V2(UniswapV2Pair).swap(0, 100 * 1e18, address(this), "0x00");
+    weth.deposit{ value: 10 ether }();
+    Uni_Pair_V2(UniswapV2Pair).swap(0, 1000 * 1e18, address(this), "0x00");
   }
 
   function uniswapV2Call(
