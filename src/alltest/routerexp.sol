@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import {console, Test} from "forge-std/Test.sol";
 import "./test/interfaces/IERC20.sol";
 import "./test/interfaces/IUni_Pair_V2.sol";
@@ -59,7 +58,7 @@ interface IJetswapPair {
 }
 
 contract controllerTest is Test {
-    using SafeMath for uint;
+    
     IMasterChef private masterchef = IMasterChef(0x63d6EC1cDef04464287e2af710FFef9780B6f9F5);
     IPancakePair PancakePair =  IPancakePair(0x0eD7e52944161450477ee417DE9Cd3a859b14fD0);
     IPancakeRouter private PkRouter = IPancakeRouter(0x10ED43C718714eb63d5aA57B78B54704E256024E);

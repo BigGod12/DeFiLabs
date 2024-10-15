@@ -3,9 +3,9 @@ pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import {console, Test} from "forge-std/Test.sol";
-import "./test/interfaces/IERC3156FlashBorrower.sol";
-import "./test/interfaces/IERC20.sol";
-import "./test/interfaces/IWETH.sol";
+import "../test/interfaces/IERC3156FlashBorrower.sol";
+import "../test/interfaces/IERC20.sol";
+import "../test/interfaces/IWETH.sol";
 
 interface ILender {
     function flashLoan(IERC3156FlashBorrower receiver, address token, uint256 amount, bytes calldata data)
@@ -98,7 +98,7 @@ contract AllienFlashTest is Test {
     uint256 exchangeRate = Allien.getExchangeRate(address(usbd));
     emit log_named_decimal_uint("exchangerate before supply exploit", exchangeRate, 18);
 
-    // Supply the borrowed USDB
+
     uint256 balanceBeforeSupply = usbd.balanceOf(address(this));
     usbd.approve(address(Allien), balanceBeforeSupply);
     emit log_named_decimal_uint("USDB Balance Before Supply", balanceBeforeSupply, 18);

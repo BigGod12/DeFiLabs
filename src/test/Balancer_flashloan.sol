@@ -7,13 +7,13 @@ import "./interfaces/IBalancerVault.sol";
 import "./interfaces/IERC20.sol";
 
 contract ContractTest is Test {
-  IERC20 usdc = IERC20(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48);
+  IERC20 usdc = IERC20(0xae78736Cd615f374D3085123A210448E74Fc6393);
 
   IBalancerVault vault = IBalancerVault(0xBA12222222228d8Ba445958a75a0704d566BF2C8);
 
 
   function setUp() public {
-    vm.createSelectFork("mainnet", 14684822);
+    vm.createSelectFork("mainnet", 20919572);
   }
 
   function testBalancer_flashloan() public {

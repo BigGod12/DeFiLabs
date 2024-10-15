@@ -31,12 +31,10 @@ contract AliendefferTest is Test {
         vm.createSelectFork("https://andromeda-rpc.metis.io", 18149612);
         me = msg.sender;
         
-        // Ensure the contract has METIS balance for deposit
-        vm.deal(address(this), 100 ether); // This needs to be adjusted to METIS if not using ETH
+        vm.deal(address(this), 100 ether);
 
-        // Call deposit to fund contract with METIS
         vm.prank(address(this));
-        wmatis.deposit{value: 90 ether}(); // Adjust this according to how METIS is handled
+        wmatis.deposit{value: 90 ether}();
     }
 
     function testTest() external payable {
@@ -53,7 +51,6 @@ contract AliendefferTest is Test {
 
         vic.convertTo(amount, address(this));
 
-        // // Call the convert function on the xMetisToken contract
         // (bool success, ) = address(wmatis).call{value: amount}(
         //     abi.encodeWithSignature("convertTo(uint256,address)", amount, address(this))
         // );

